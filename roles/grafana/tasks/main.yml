@@ -1,0 +1,21 @@
+---
+# tasks file for nginx
+- name: install rpm
+  package:
+    name: 
+      - wget 
+      - mc
+      - curl
+    state: present
+- name: install prometheus-exporters.repo
+  shell : wget https://dl.grafana.com/enterprise/release/grafana-enterprise-8.3.1-1.x86_64.rpm
+- name: install package grafana-enterprise-8.3.1-1.x86_64.rpm
+  yum:
+    name: grafana-enterprise-8.3.1-1.x86_64.rpm
+    state: installed
+- name: start gragana-server
+  service:
+    name: gragana-server
+    state: started
+    enabled: yes
+    

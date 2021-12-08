@@ -1,0 +1,24 @@
+---
+# tasks file for nginx
+#- name: yum update 
+#  shell : yum update -y
+#- name: install epel-release
+#  shell : yum install epel-release -y 
+- name: install rpm
+  package:
+    name: 
+      - wget 
+      - mc
+      - curl
+    state: present
+- name: install prometheus-exporters.repo
+  shell : curl -Lo /etc/yum.repos.d/_copr_ibotty-prometheus-exporters.repo https://copr.fedorainfracloud.org/coprs/ibotty/prometheus-exporters/repo/epel-7/ibotty-prometheus-exporters-epel-7.repo
+- name: install package node_exporter
+  yum:
+    name: node_exporter
+    state: installed
+- name: start service
+  service:
+    name: node_exporter
+    state: started
+    enabled: yes

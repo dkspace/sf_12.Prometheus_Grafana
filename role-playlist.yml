@@ -1,0 +1,28 @@
+- hosts: PrometheusGrafana
+  gather_facts: yes
+  become: yes
+  become_user: root
+  become_method: sudo
+  roles:
+  - users_key
+  - key_cp
+  - ansible-prometheus
+  vars:
+    prometheus_targets:
+      node:
+      - targets:
+        - localhost:9100
+        labels:
+          env: demosite
+  - grafana
+- hosts: nginx
+  gather_facts: no
+  become: yes
+  become_user: root
+  become_method: sudo
+  roles:
+  - users_key
+  - key_cp
+  - nginx
+  - node-exporter
+ 
