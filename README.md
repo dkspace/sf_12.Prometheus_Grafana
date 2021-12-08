@@ -26,9 +26,12 @@ terraform apply
 ## Configure Grafana
 
 In Grafana Data source Prometheus have to be configured (please refer to images folder) 
+
 In Grafana : dashboard import , and insert id of dasboard #1860 
 
+
 http://vm1ip:9090 <- Prometheus GUI
+
 http://vm2ip:3000/ <- Grafana GUI admin:admin or admin:1qaz@WSX 
 
 
